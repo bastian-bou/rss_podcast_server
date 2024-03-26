@@ -1,2 +1,4 @@
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 # rss_podcast_server
-RSS podcast server based on NodeJs and podcast lib
+RSS podcast server based on [NodeJs](https://nodejs.org/en), [Koa](https://www.npmjs.com/package/koa) and [podcast](https://www.npmjs.com/package/podcast) packages
