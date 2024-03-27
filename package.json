@@ -1,0 +1,29 @@
+{
+  "name": "rss_podcast_server",
+  "version": "1.0.0",
+  "description": "RSS podcast server. It parse json files, image and audio file to generate a RSS XML server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bastian-bou/rss_podcast_server.git"
+  },
+  "keywords": [
+    "podcast",
+    "koa",
+    "rss"
+  ],
+  "author": "baxtian",
+  "license": "CC-BY-NC-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/bastian-bou/rss_podcast_server/issues"
+  },
+  "homepage": "https://github.com/bastian-bou/rss_podcast_server#readme",
+  "dependencies": {
+    "koa": "^2.15.2",
+    "koa-static": "^5.0.0",
+    "podcast": "^2.0.1"
+  }
+}
