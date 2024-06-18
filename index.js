@@ -49,7 +49,7 @@ function addEpisod(jsonFile, audioFile, imageFile) {
     enclosure: { url: url + '/' + audioFile, file: staticPodcastPath + '/' + audioFile }, // optional enclosure
     itunesExplicit: false,
     itunesDuration: jsonFile.duration,
-    itunesImage: url + '/' + imageFile
+    itunesImage: url + imageFile
   });
 }
 
@@ -101,8 +101,16 @@ fs.watch(staticPodcastPath, { recursive: false }, async (eventType, filename) =>
           const isContentValid = await checkFolderContent(folderPath);
           if (isContentValid) {
             console.log(`The necessary files are located in the ${filename}`);
+            // Add episod image or podcast image
+            const episodeImagePath = path.join(folderPath, 'episod.jpg');
+            let imageUrl;
+            if (fs.existsSync(episodeImagePath)) {
+              imageUrl = '/' + filename + '/episod.jpg';
+            } else {
+              imageUrl = podImgPath;
+            }
             // Update RSS feed here
-            addEpisod(readJSONFile(folderPath + '/episod.json'), filename + '/episod.m4a');
+            addEpisod(readJSONFile(folderPath + '/episod.json'), filename + '/episod.m4a', imageUrl);
             clearInterval(interval); // Stop periodic verification
           } else {
             console.log(`Not all the necessary files are in ${filename}`);
