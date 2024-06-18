@@ -11,6 +11,7 @@ const http = require('http');
 const https = require('https');
 const koa = require('koa');
 const serve = require('koa-static');
+const range = require('koa-range');
 
 const domainName = 'contretempsvoyage.fr'
 const url = 'https://' + domainName;
@@ -157,6 +158,8 @@ const feed = new Podcast({
 });
 
 const server = new koa();
+
+server.use(range);
 
 // Add the content of podcast folder available to the webserver
 server.use(serve(staticPodcastPath));
