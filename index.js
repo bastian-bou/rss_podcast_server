@@ -49,12 +49,20 @@ function readJSONFile(filePath) {
 
 /**
  * @brief Sorts episodes by date in descending order (most recent first).
+ * @details We have to recall addItem everytime to have the itunes namespace
  */
 function sortEpisodesByDate() {
-  // Convert the Map to an array and sort it by the date of the episodes
-  const sortedEpisodes = [...episodesMap.entries()].sort(([, a], [, b]) => new Date(b.date) - new Date(a.date));
-  // Rebuild the feed with sorted episodes
-  feed.items = sortedEpisodes.map(([, episode]) => episode);
+  // 1️⃣ Clear the module's internal items array
+  feed.items = [];
+
+  // 2️⃣ Iterate over the stored episodes, sort them, then re‑add them
+  const sorted = [...episodesMap.values()]
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  for (const ep of sorted) {
+    // feed.addItem performs the necessary conversion (iTunes tags, etc.)
+    feed.addItem(ep);
+  }
 }
 
 /**
